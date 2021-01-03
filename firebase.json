@@ -4,14 +4,24 @@
     "ignore": [
       "firebase.json",
       "**/.*",
-      "public/package.json",
-      "public/yarn.lock",
-      "node_modules/**"
+      "**/package.json",
+      "**/yarn.lock"
     ],
     "rewrites": [
       {
         "source": "**",
         "destination": "/index.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "**/*.css",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "text/css"
+          }
+        ]
       }
     ]
   }
