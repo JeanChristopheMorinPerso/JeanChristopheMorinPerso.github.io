@@ -1,0 +1,15 @@
+{
+  "name": "jcmorin-site",
+  "version": "1.0.0",
+  "description": "My personal website",
+  "main": "index.js",
+  "author": "Jean-Christophe Morin",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "firebase-tools": "^9.1.0"
+  },
+  "devDependencies": {
+    "bootlint": "^1.1.0"
+  }
+}
