@@ -1,0 +1,8 @@
+image: node
+
+pipelines:
+  default:
+  - step:
+    name: Build
+    script:
+    - cd public && yarn install
