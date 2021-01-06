@@ -9,7 +9,5 @@
   "dependencies": {
     "firebase-tools": "^9.1.0"
   },
-  "devDependencies": {
-    "bootlint": "^1.1.0"
-  }
+  "devDependencies": {}
 }
