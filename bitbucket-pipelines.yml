@@ -4,6 +4,8 @@ pipelines:
   default:
     - step:
         name: Build
+        caches:
+          - node
         script:
           - cd public && yarn install
         artifacts:
@@ -12,6 +14,8 @@ pipelines:
     - step:
         name: Deploy
         deployment: staging
+        caches:
+          - node
         script:
           - yarn install
           - echo $FIREBASE_PRIVATE_KEY | base64 -d > $GOOGLE_APPLICATION_CREDENTIALS
