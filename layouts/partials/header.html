@@ -1,0 +1,24 @@
+<div class="container">
+  <nav class="navbar navbar-expand-sm navbar-light">
+    <div class="container">
+      <div class="d-flex w-100">
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+          {{- $currentPage := . -}}
+          {{- range .Site.Menus.main -}}
+          {{ $active := or ($currentPage.IsMenuCurrent "nav" .) ($currentPage.HasMenuCurrent "nav" .) -}}
+          {{ $active = or $active (eq .Name $currentPage.Title) }}
+          <div class="nav-item">
+            <a class="nav-link {{ if $active }}active border rounded{{ end }} header-link" {{ if $active }}aria-current="page"{{ end }} href="{{ .URL | relLangURL }}">{{ .Title }}</a>
+          </div>
+          {{- end }}
+      </div>
+      <div class="d-flex ms-3">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          {{ partial "languageSelector" . -}}
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>

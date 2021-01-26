@@ -1,33 +1,33 @@
-image: node
+# image: node
 
-pipelines:
-  default:
-    - step:
-        name: Build
-        caches:
-          - node
-        script:
-          - cd public && yarn install
-        artifacts:
-          - public/node_modules/**
+# pipelines:
+#   default:
+#     - step:
+#         name: Build
+#         caches:
+#           - node
+#         script:
+#           - cd public && yarn install
+#         artifacts:
+#           - public/node_modules/**
 
-    - step:
-        name: Deploy to staging
-        deployment: staging
-        caches:
-          - node
-        script:
-          - yarn install
-          - echo $FIREBASE_PRIVATE_KEY | base64 -d > $GOOGLE_APPLICATION_CREDENTIALS
-          - npx firebase hosting:channel:deploy test
+#     - step:
+#         name: Deploy to staging
+#         deployment: staging
+#         caches:
+#           - node
+#         script:
+#           - yarn install
+#           - echo $FIREBASE_PRIVATE_KEY | base64 -d > $GOOGLE_APPLICATION_CREDENTIALS
+#           - npx firebase hosting:channel:deploy test
 
-    - step:
-        name: Deploy to prod
-        deployment: production
-        trigger: manual
-        caches:
-          - node
-        script:
-          - yarn install
-          - echo $FIREBASE_PRIVATE_KEY | base64 -d > $GOOGLE_APPLICATION_CREDENTIALS
-          - npx firebase hosting:clone jcmorin-site:test jcmorin-site:live
+#     - step:
+#         name: Deploy to prod
+#         deployment: production
+#         trigger: manual
+#         caches:
+#           - node
+#         script:
+#           - yarn install
+#           - echo $FIREBASE_PRIVATE_KEY | base64 -d > $GOOGLE_APPLICATION_CREDENTIALS
+#           - npx firebase hosting:clone jcmorin-site:test jcmorin-site:live

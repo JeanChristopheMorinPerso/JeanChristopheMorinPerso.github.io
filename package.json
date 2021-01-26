@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "firebase-tools": "^9.1.0"
+    "firebase-tools": "^9.2.2"
   },
   "devDependencies": {}
 }

@@ -1,0 +1,22 @@
+.header-link {
+  color: black;
+}
+
+.active {
+  border-color: black;
+}
+
+footer {
+  background-color: rgb(178, 233, 230);
+}
+
+/* .navbar-toggler:focus {
+  box-shadow: 0 0 0 0rem;
+} */
+
+.floating-icon {
+  float: right;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+}

@@ -1,0 +1,26 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+
+    <meta name="description" content="{{ .Description }}">
+    <meta name="author" content="Jesn-Christophe Morin">
+    {{- template "_internal/twitter_cards.html" . -}}
+    {{- template "_internal/opengraph.html" . -}}
+
+    <title>{{ .Title }} - {{ .Site.BaseURL }}</title>
+    <link rel="canonical" href="{{ .Permalink }}">
+
+    {{- $favicon := resources.Get "img/shorts.svg" -}}
+    <link rel="icon" type="image/svg" href="{{ $favicon.RelPermalink }}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/markdown.css" rel="stylesheet">
+
+    {{- with .OutputFormats.Get "RSS" -}}
+    {{ printf "<link href=%q rel=\"alternate\" type=%q title=%q />" .Permalink .MediaType $.Site.Title | safeHTML }}
+    {{- end }}
+</head>
