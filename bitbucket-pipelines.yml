@@ -1,33 +1,39 @@
-# image: node
+image: node
 
-# pipelines:
-#   default:
-#     - step:
-#         name: Build
-#         caches:
-#           - node
-#         script:
-#           - cd public && yarn install
-#         artifacts:
-#           - public/node_modules/**
+pipelines:
+  default:
+    - step:
+        name: Build
+        script:
+          - mkdir /opt/hugo
+          - cd /opt/hugo && wget https://github.com/gohugoio/hugo/releases/download/v0.80.0/hugo_0.80.0_Linux-64bit.tar.gz && tar xvfz hugo_0.80.0_Linux-64bit.tar.gz
+          - pwd
+          - cd $BITBUCKET_CLONE_DIR && /opt/hugo/hugo
+        artifacts:
+          - public/**
 
-#     - step:
-#         name: Deploy to staging
-#         deployment: staging
-#         caches:
-#           - node
-#         script:
-#           - yarn install
-#           - echo $FIREBASE_PRIVATE_KEY | base64 -d > $GOOGLE_APPLICATION_CREDENTIALS
-#           - npx firebase hosting:channel:deploy test
+    - step:
+        name: Deploy to staging
+        deployment: staging
+        caches:
+          - yarn
+        script:
+          - yarn cache dir
+          - yarn install --frozen-lockfile
+          - echo $FIREBASE_PRIVATE_KEY | base64 -d > $GOOGLE_APPLICATION_CREDENTIALS
+          - npx firebase hosting:channel:deploy staging
 
-#     - step:
-#         name: Deploy to prod
-#         deployment: production
-#         trigger: manual
-#         caches:
-#           - node
-#         script:
-#           - yarn install
-#           - echo $FIREBASE_PRIVATE_KEY | base64 -d > $GOOGLE_APPLICATION_CREDENTIALS
-#           - npx firebase hosting:clone jcmorin-site:test jcmorin-site:live
+    - step:
+        name: Deploy to prod
+        deployment: production
+        trigger: manual
+        caches:
+          - yarn
+        script:
+          - yarn install --frozen-lockfile
+          - echo $FIREBASE_PRIVATE_KEY | base64 -d > $GOOGLE_APPLICATION_CREDENTIALS
+          - npx firebase hosting:clone jcmorin-site:staging jcmorin-site:live
+
+definitions:
+  caches:
+    yarn: /usr/local/share/.cache/yarn
