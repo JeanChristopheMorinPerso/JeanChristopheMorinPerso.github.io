@@ -39,9 +39,11 @@ weight = 2
 title = "À propos"
 
 [markup]
-    [markup.highlight]
-        style = "dracula"
+  [markup.highlight]
+    style = "dracula"
 
+[params]
+  images = ["img/shorts.svg"]
 
 [privacy]
   [privacy.disqus]
