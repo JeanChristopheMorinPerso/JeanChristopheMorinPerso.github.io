@@ -17,7 +17,7 @@ Which I would usually answer with:
 
 > Why not?
 
-And then you woud look at me thinking I'm kind of weird.
+And then you would look at me thinking I'm kind of weird.
 
 Now, if I don't explain in more details why, you might:
 
