@@ -1,5 +1,5 @@
 ---
-title: home
+title: Jean-Christophe Morin
 description: This is a description
 
 x_role: Software developer/DevOps

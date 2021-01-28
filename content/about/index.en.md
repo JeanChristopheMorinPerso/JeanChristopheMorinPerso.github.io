@@ -1,6 +1,6 @@
 ---
-title: about
-description: About me
+title: About
+description: About me.
 ---
 About me
 

@@ -1,6 +1,6 @@
 ---
 title: Shorts
-description: Always in shorts
+description: Shorts pour la vie
 ---
 
 {{< img src="/img/shorts.svg" width="250rem" >}}
