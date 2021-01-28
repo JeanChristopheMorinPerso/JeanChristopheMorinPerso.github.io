@@ -2,15 +2,18 @@
 <html class="h-100" lang="en">
   {{- partial "head" . -}}
   <body class="d-flex flex-column h-100">
+    {{- partial "header" . -}}
+    <!-- We define the floating icon after so that it is on top of everything. -->
     <div class="d-flex">
+      {{ if ne .Title "Shorts" }}
       {{ with .Site.GetPage "shorts" -}}
       <a class="floating-icon" href="{{ .RelPermalink }}" title="History of the shorts">
         {{ $shortsIcon := resources.Get "img/shorts.svg" -}}
         <img src="{{ $shortsIcon.RelPermalink }}" alt="History of the shorts" width="32rem" height="32rem">
       </a>
       {{ end }}
+      {{ end }}
     </div>
-    {{- partial "header" . -}}
     <!-- Code that all your templates share, like a header -->
     {{- block "main" . -}}
       <!-- The part of the page that begins to differ between templates -->
