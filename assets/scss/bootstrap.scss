@@ -1,0 +1,3 @@
+// We import everything, which we will then convert to CSS.
+// We will also run PurgeCSS, that way we only package what's really used.
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";

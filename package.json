@@ -6,8 +6,19 @@
   "author": "Jean-Christophe Morin",
   "license": "MIT",
   "private": true,
-  "dependencies": {
-    "firebase-tools": "^9.2.2"
+  "scripts": {
+    "clean": "rm -rf ./public ./resources",
+    "serve": "PATH=$PATH:sass_embedded hugo serve --destination public"
   },
-  "devDependencies": {}
+  "dependencies": {
+    "@fullhuman/postcss-purgecss": "^4.0.0",
+    "bootstrap": "^5.0.0-beta2",
+    "cssnano": "^4.1.10",
+    "postcss": "^8.2.6",
+    "postcss-cli": "^8.3.1",
+    "purgecss": "^4.0.0"
+  },
+  "devDependencies": {
+    "firebase-tools": "^9.4.0"
+  }
 }

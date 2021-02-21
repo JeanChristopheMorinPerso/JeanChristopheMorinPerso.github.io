@@ -15,10 +15,25 @@
     {{- $favicon := resources.Get "img/shorts.svg" -}}
     <link rel="icon" type="image/svg" href="{{ $favicon.RelPermalink }}">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
-    <link href="/css/main.css" rel="stylesheet">
-    <link href="/css/markdown.css" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+
+    <!--
+        Load all CSS, merge together and then run PostCSS as a post-process
+        to remove unsused CSS
+    -->
+    {{ $mainCSS := resources.Get "css/main.css" }}
+    {{ $markdownCSS := resources.Get "css/markdown.css" }}
+
+    <!-- Special case here as we take our bootstrap file and convert it to CSS -->
+    {{ $bootstrapSass := resources.Get "scss/bootstrap.scss" }}
+    {{ $bootstrapOptions := (dict "transpiler" "dartsass") }}
+    {{ $bootstrapCSS := $bootstrapSass | toCSS $bootstrapOptions }}
+
+    {{ $css := slice $mainCSS $markdownCSS $bootstrapCSS | resources.Concat "css/site.css" }}
+
+    {{ $style := $css | resources.PostCSS | fingerprint | resources.PostProcess }}
+
+    <link href="{{ $style.RelPermalink }}" rel="stylesheet" integrity="{{ $style.Data.Integrity }}" crossorigin="anonymous" media="screen">
 
     {{- with .OutputFormats.Get "RSS" -}}
     {{ printf "<link href=%q rel=\"alternate\" type=%q title=%q />" .Permalink .MediaType $.Site.Title | safeHTML }}

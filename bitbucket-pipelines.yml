@@ -2,13 +2,42 @@ image: node
 
 pipelines:
   default:
+    # - step:
+    #     name: Build docker image
+    #     condition:
+    #         changesets:
+    #             includePaths:
+    #               - "Dockerfile"
+    #     script:
+    #       - localImage="local-hugo:pipeline-${BITBUCKET_BUILD_NUMBER}"
+    #       - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_ACCESS_TOKEN
+    #       - docker build -t $localImage
+    #       - versionToPublish=$(docker inspect $localImage --format='{{.Config.Labels.hugo}}')
+    #       - if [[ "$BITBUCKET_BRANCH" != "master" ]]; then versionToPublish="$versionToPublish-$BITBUCKET_BUILD_NUMBER"; fi
+    #       - docker tag $localImage $DOCKER_HUB_USER/hugo:$versionToPublish
+    #       - docker push $DOCKER_HUB_USER/hugo:$versionToPublish
+
     - step:
-        name: Build
+        name: Build site
+        image:
+            name: jeanchristophemorinperso/hugo:0.81.0-beta.1
+            username: $DOCKER_HUB_USER
+            password: $DOCKER_HUB_ACCESS_TOKEN
+
+        caches:
+          - yarn
+
         script:
-          - mkdir /opt/hugo
-          - cd /opt/hugo && wget https://github.com/gohugoio/hugo/releases/download/v0.80.0/hugo_0.80.0_Linux-64bit.tar.gz && tar xvfz hugo_0.80.0_Linux-64bit.tar.gz
-          - pwd
-          - cd $BITBUCKET_CLONE_DIR && /opt/hugo/hugo
+          # - mkdir /opt/hugo
+          # - cd /opt/hugo && wget https://github.com/gohugoio/hugo/releases/download/v0.81.0/hugo_extended_0.81.0_Linux-64bit.tar.gz && tar xvfz hugo_extended_0.81.0_Linux-64bit.tar.gz
+          # # sass_embedded will be unpacked in a folder named sass_embedded.
+          # # That's why we don't need to cd into the folder.
+          # - cd /opt && wget https://github.com/sass/dart-sass-embedded/releases/download/1.0.0-beta.6/sass_embedded-1.0.0-beta.6-linux-x64.tar.gz && tar xvfz sass_embedded-1.0.0-beta.6-linux-x64.tar.gz
+          # - export PATH=/opt/hugo:/opt/sass_embedded:$PATH
+          # - find /opt -name "*.tar.gz" -delete
+          # - cd $BITBUCKET_CLONE_DIR
+          - yarn install --frozen-lockfile
+          - hugo
         artifacts:
           - public/**
 
@@ -19,7 +48,7 @@ pipelines:
           - yarn
         script:
           - yarn cache dir
-          - yarn install --frozen-lockfile
+          - yarn install --dev --frozen-lockfile
           - echo $FIREBASE_PRIVATE_KEY | base64 -d > $GOOGLE_APPLICATION_CREDENTIALS
           - npx firebase hosting:channel:deploy staging
 
