@@ -1,4 +1,4 @@
 {{- $image := (resources.Get (print "img/emojis/" (.Get "name") ".png") ) }}
 {{- $size := default 20 (.Get "size") }}
 {{- $image := $image.Resize (print $size "x") }}
-<img src="{{ $image.RelPermalink }}" alt="{{ .Get "name" }}" title="{{ .Get "name" }}">
+<img src="{{ $image.RelPermalink }}" alt="{{ .Get "name" }}" title="{{ .Get "name" }}" width="{{ $size }}px" height="{{ $size }}px">
