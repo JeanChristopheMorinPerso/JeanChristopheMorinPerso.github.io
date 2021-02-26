@@ -8,7 +8,8 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf ./public ./resources",
-    "serve": "PATH=$PATH:sass_embedded hugo serve --destination public"
+    "build-local": "PATH=$PATH:sass_embedded HUGO_ENV=dev hugo",
+    "serve": "PATH=$PATH:sass_embedded HUGO_ENV=dev hugo serve --destination public"
   },
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^4.0.0",

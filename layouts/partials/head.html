@@ -29,11 +29,21 @@
     {{ $bootstrapOptions := (dict "transpiler" "dartsass") }}
     {{ $bootstrapCSS := $bootstrapSass | toCSS $bootstrapOptions }}
 
-    {{ $css := slice $mainCSS $markdownCSS $bootstrapCSS | resources.Concat "css/site.css" }}
+    {{ $env := getenv "HUGO_ENV" }}
+    {{ if eq $env "dev" }}
 
+    <link href="{{ $mainCSS.RelPermalink }}" rel="stylesheet" media="screen">
+    <link href="{{ $markdownCSS.RelPermalink }}" rel="stylesheet" media="screen">
+    <link href="{{ $bootstrapCSS.RelPermalink }}" rel="stylesheet" media="screen">
+
+    {{ else }}
+
+    {{ $css := slice $mainCSS $markdownCSS $bootstrapCSS | resources.Concat "css/site.css" }}
     {{ $style := $css | resources.PostCSS | fingerprint | resources.PostProcess }}
 
     <link href="{{ $style.RelPermalink }}" rel="stylesheet" integrity="{{ $style.Data.Integrity }}" crossorigin="anonymous" media="screen">
+
+    {{ end }}
 
     {{- with .OutputFormats.Get "RSS" -}}
     {{ printf "<link href=%q rel=\"alternate\" type=%q title=%q />" .Permalink .MediaType $.Site.Title | safeHTML }}
