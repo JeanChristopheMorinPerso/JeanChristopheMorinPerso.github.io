@@ -45,6 +45,11 @@ title = "À propos"
 [params]
   images = ["img/shorts.svg"]
 
+[module]
+  [[module.mounts]]
+    source = "node_modules/bootstrap/dist/js"
+    target = "static/js/bootstrap"
+
 [privacy]
   [privacy.disqus]
     disable = true
