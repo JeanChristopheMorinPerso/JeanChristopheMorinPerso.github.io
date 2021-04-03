@@ -8,18 +8,19 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf ./public ./resources",
-    "build-local": "PATH=$PATH:sass_embedded HUGO_ENV=dev hugo",
+    "build": "PATH=$PATH:sass_embedded hugo",
+    "build-dev": "HUGO_ENV=dev yarn run build",
     "serve": "PATH=$PATH:sass_embedded HUGO_ENV=dev hugo serve --destination public"
   },
   "dependencies": {
-    "@fullhuman/postcss-purgecss": "^4.0.0",
-    "bootstrap": "^5.0.0-beta2",
+    "@fullhuman/postcss-purgecss": "^4.0.3",
+    "bootstrap": "5.0.0-beta3",
     "cssnano": "^4.1.10",
-    "postcss": "^8.2.6",
+    "postcss": "^8.2.9",
     "postcss-cli": "^8.3.1",
-    "purgecss": "^4.0.0"
+    "purgecss": "^4.0.3"
   },
   "devDependencies": {
-    "firebase-tools": "^9.4.0"
+    "firebase-tools": "^9.8.0"
   }
 }

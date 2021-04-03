@@ -20,7 +20,7 @@ pipelines:
     - step:
         name: Build site
         image:
-            name: jeanchristophemorinperso/hugo:0.81.0-beta.1
+            name: jeanchristophemorinperso/hugo:0.82.0-beta.1
             username: $DOCKER_HUB_USER
             password: $DOCKER_HUB_ACCESS_TOKEN
 

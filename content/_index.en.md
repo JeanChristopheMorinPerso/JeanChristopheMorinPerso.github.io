@@ -1,6 +1,6 @@
 ---
 title: Jean-Christophe Morin
-description: This is a description
+description: Jean-Christophe Morin's personal website
 
 x_role: Software developer/DevOps
 x_location: Montreal, Canada
