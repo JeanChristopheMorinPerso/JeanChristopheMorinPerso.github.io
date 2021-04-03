@@ -6,6 +6,8 @@ enableEmoji = true
 
 defaultContentLanguage = "en"
 
+enableRobotsTXT = true
+
 [languages.en]
 weight = 0
 languageName = "English"
