@@ -1,6 +1,7 @@
 ---
 title: About
 description: About me.
+draft: true
 ---
 
 If you ended up here it's probably because you want to know more about me, so here we go.

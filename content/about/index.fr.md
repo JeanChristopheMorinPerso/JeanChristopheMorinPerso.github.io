@@ -1,6 +1,7 @@
 ---
 title: À propos
 description: À propos de moi.
+draft: true
 ---
 
 Si vous avez fini ici, c'est probablement parce que vous voulez en savoir plus sur moi, alors c'est parti.
