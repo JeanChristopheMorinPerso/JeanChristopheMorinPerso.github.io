@@ -8,7 +8,8 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf ./public ./resources",
-    "build-local": "PATH=$PATH:sass_embedded HUGO_ENV=dev hugo",
+    "build": "PATH=$PATH:sass_embedded hugo",
+    "build-dev": "HUGO_ENV=dev yarn run build",
     "serve": "PATH=$PATH:sass_embedded HUGO_ENV=dev hugo serve --destination public"
   },
   "dependencies": {
