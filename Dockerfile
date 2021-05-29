@@ -1,8 +1,8 @@
-FROM node:15-slim
+FROM node:16-slim
 
 LABEL maintainer="jean_christophe_morin@hotmail.com"
 
-ARG HUGO_VERSION=0.82.0
+ARG HUGO_VERSION=0.83.1
 ARG SASS_VERSION=1.0.0-beta.7
 
 LABEL hugo=${HUGO_VERSION}

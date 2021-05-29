@@ -20,7 +20,7 @@ pipelines:
     - step:
         name: Build site
         image:
-            name: jeanchristophemorinperso/hugo:0.82.0-beta.1
+            name: jeanchristophemorinperso/hugo:0.83.1-1
             username: $DOCKER_HUB_USER
             password: $DOCKER_HUB_ACCESS_TOKEN
 
@@ -28,13 +28,6 @@ pipelines:
           - yarn
 
         script:
-          # - mkdir /opt/hugo
-          # - cd /opt/hugo && wget https://github.com/gohugoio/hugo/releases/download/v0.81.0/hugo_extended_0.81.0_Linux-64bit.tar.gz && tar xvfz hugo_extended_0.81.0_Linux-64bit.tar.gz
-          # # sass_embedded will be unpacked in a folder named sass_embedded.
-          # # That's why we don't need to cd into the folder.
-          # - cd /opt && wget https://github.com/sass/dart-sass-embedded/releases/download/1.0.0-beta.6/sass_embedded-1.0.0-beta.6-linux-x64.tar.gz && tar xvfz sass_embedded-1.0.0-beta.6-linux-x64.tar.gz
-          # - export PATH=/opt/hugo:/opt/sass_embedded:$PATH
-          # - find /opt -name "*.tar.gz" -delete
           # - cd $BITBUCKET_CLONE_DIR
           - yarn install --frozen-lockfile
           - hugo
