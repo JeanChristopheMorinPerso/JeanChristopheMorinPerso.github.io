@@ -9,7 +9,7 @@
 {{- else -}}
 {{- range .Site.Languages -}}
 {{- if ne $.Site.Language.Lang .Lang -}}
-<img src="{{ $languageIcon.RelPermalink }}" alt="Language icon">
+<img src="{{ $languageIcon.RelPermalink }}" alt="Language icon" width="20rem" height="20rem">
 <a class="header-link text-decoration-none" rel="alternate" href="{{ .Lang | relURL }}" hreflang="{{ .Lang }}" lang="{{ .Lang }}">
   {{- .LanguageName -}}
 </a>

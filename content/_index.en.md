@@ -5,7 +5,6 @@ description: Jean-Christophe Morin's personal website
 x_role: Software developer/DevOps
 x_location: Montreal, Canada
 ---
-
 # :construction: Site under construction :construction: 
 
 Hey, I'm Jean-Christophe (or JC if you prefer the short version :stuck_out_tongue:)
