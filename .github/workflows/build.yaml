@@ -3,7 +3,7 @@ name: build
 on:
   push:
     branches:
-      - master  # Set a branch to deploy
+      - '*'  # Set a branch to deploy
   pull_request:
 
 
