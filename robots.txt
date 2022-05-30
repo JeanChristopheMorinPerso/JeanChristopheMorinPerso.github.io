@@ -1,0 +1,3 @@
+User-agent: *
+
+Sitemap: https://jcmorin.dev/sitemap.xml
