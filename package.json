@@ -20,7 +20,5 @@
     "postcss-cli": "^8.3.1",
     "purgecss": "^4.0.3"
   },
-  "devDependencies": {
-    "firebase-tools": "^9.14.0"
-  }
+  "devDependencies": {}
 }
